@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+    	<title>NYUniHome</title>
+    	<script src="https://d3js.org/d3.v4.min.js"></script>
+    	<link rel="stylesheet" type="text/css" href="style.css" />
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    			
+    	<!-- Latest compiled and minified CSS -->
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    	<!-- Optional theme -->
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    
+    	<!-- Latest compiled and minified JavaScript -->
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<h1>NYUniHome</h1>
+			</div>
+			<div class="row">
+				<div class="col-sm-5 col-md-5">
+					<h2>Filters</h2>
+					<input type="checkbox" value="">&nbsp;Price<br>
+					<input type="checkbox" value="">&nbsp;Distance to NYU<br>
+					<input type="checkbox" value="">&nbsp;Safety<br>
+					<br>
+					The red markers show rental places, click on them to see detailed info.
+					The heat zones indicate the danger of the zone.
+				</div>
+				<div class="col-sm-7 col-md-7">
+					<div id="map"></div>
+				</div>
+			</div>
+		</div>
+	
+	
+    <!-- Script section -->
+    <script type="text/javascript">
+		var map, heatmap;
+		console.log($.ajax({ url:"https://www.ncdc.noaa.gov/cdo-web/api/v2/datasets?datatypeid=FIPS:17", data: "", headers:{ token:"qNXRrjWmlYYJAOLeniQkonxhnSCxEuVu" } }));
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+				center: {lat: 40.729584, lng: 286.004065},
+				zoom: 17
+			});
+			var data = getPoints();
+			heatmap = new google.maps.visualization.HeatmapLayer({
+				data: data,
+				map: map
+			});
+		}
+		
+		function getPoints(){
+			return null;
+		}
+    </script>
+	<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8NQzfa5M4vyrDpbfVOgryj3vrhRACCPw&libraries=visualization&callback=initMap">
+    </script>
+    
+  </body>
+</html>
